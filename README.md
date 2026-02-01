@@ -33,6 +33,33 @@ graph TD
     D -- Alert --> G[Telegram/Discord (Future)]
 ```
 
+## 🧠 Monitoring Logic Flow
+
+This diagram illustrates how Sentinel's intelligent polling engine processes data every cycle:
+
+```mermaid
+graph TD
+    Start((Start Loop)) --> Sleep[Wait Poll Interval]
+    Sleep --> FetchSOL[Fetch SOL Balance]
+    
+    FetchSOL --> CheckSOL{Changed?}
+    CheckSOL -- Yes --> AlertSOL[📢 Alert: SOL Update]
+    CheckSOL -- No --> FetchTokens
+    AlertSOL --> FetchTokens
+    
+    FetchTokens[Fetch SPL Token Accounts] --> Parse[Parse JSON Data]
+    Parse --> LoopTokens[Iterate Each Token]
+    
+    LoopTokens --> CheckToken{Balance Changed?}
+    CheckToken -- Yes --> AlertToken[📢 Alert: Token Update]
+    CheckToken -- No --> NextToken
+    AlertToken --> NextToken
+    
+    NextToken{More Tokens?} -- Yes --> LoopTokens
+    NextToken -- No --> SaveState[Update Previous State]
+    SaveState --> Sleep
+```
+
 ## 🛠️ Installation
 
 1. **Clone the repository** (if applicable) or navigate to the project folder:
