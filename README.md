@@ -30,7 +30,7 @@ graph TD
     
     C -- Detect Change --> D
     D -- Alert --> F[Console Output]
-    D -- Alert --> G[Telegram/Discord (Future)]
+    D -- Alert --> G["Telegram/Discord (Future)"]
 ```
 
 ## 🧠 Monitoring Logic Flow
@@ -43,7 +43,7 @@ graph TD
     Sleep --> FetchSOL[Fetch SOL Balance]
     
     FetchSOL --> CheckSOL{Changed?}
-    CheckSOL -- Yes --> AlertSOL[📢 Alert: SOL Update]
+    CheckSOL -- Yes --> AlertSOL["📢 Alert: SOL Update"]
     CheckSOL -- No --> FetchTokens
     AlertSOL --> FetchTokens
     
@@ -51,7 +51,7 @@ graph TD
     Parse --> LoopTokens[Iterate Each Token]
     
     LoopTokens --> CheckToken{Balance Changed?}
-    CheckToken -- Yes --> AlertToken[📢 Alert: Token Update]
+    CheckToken -- Yes --> AlertToken["📢 Alert: Token Update"]
     CheckToken -- No --> NextToken
     AlertToken --> NextToken
     
